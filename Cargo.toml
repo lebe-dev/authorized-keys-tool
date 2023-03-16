@@ -1,0 +1,23 @@
+[package]
+name = "akt"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = 'abort'
+
+[dependencies]
+anyhow = "1"
+
+clap = "4.1.8"
+
+regex = "1.7.1"
+
+log = "0.4"
+log4rs = "1"
+
+[dev-dependencies]
+env_logger = "0.10.0"
