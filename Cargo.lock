@@ -16,6 +16,7 @@ name = "akt"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "authorized-keys",
  "clap",
  "env_logger",
  "log",
@@ -43,6 +44,16 @@ name = "arc-swap"
 version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bddcadddf5e9015d310179a59bb28c4d4b9920ad0f11e8e14dbadf654890c9a6"
+
+[[package]]
+name = "authorized-keys"
+version = "1.0.0"
+source = "git+https://gitlab.com/weird-crates/authorized-keys-rs.git#28d78afba2492991ba48af30a280f6d7da5ad528"
+dependencies = [
+ "log",
+ "regex",
+ "thiserror",
+]
 
 [[package]]
 name = "autocfg"
