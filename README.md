@@ -24,7 +24,7 @@ $ akt show-keys --older-than-days 7
 Logs are disabled by default.
 
 ```shell
-sack --log-level=debug [COMMAND] [OPTIONS]
+$ ack --log-level=debug [COMMAND] [OPTIONS]
 ```
 
 Check logs in `akt.log`.
