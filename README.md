@@ -11,7 +11,9 @@ ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJRApVG9oMFm8Rf4UHe+L8NDluPrIT3Q9eB/o1PXR2Ld mr.
 ...
 ```
 
-### Show keys which used more than X days
+### Show old keys
+
+Show keys which used older than X days.
 
 ```shell
 $ akt show-keys --older-than-days 7
