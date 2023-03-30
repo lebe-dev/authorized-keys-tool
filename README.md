@@ -28,3 +28,8 @@ sack --log-level=debug [COMMAND] [OPTIONS]
 ```
 
 Check logs in `akt.log`.
+
+## Roadmap
+
+1. Show unused keys
+2. Show keys without id
