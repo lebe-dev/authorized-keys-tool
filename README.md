@@ -19,6 +19,12 @@ Show keys which used older than X days.
 $ akt show-keys --older-than-days 7
 ```
 
+## Limitations
+
+Tool reads files: `auth.log`, `auth.log.X`, `auth.log.X.gz` from `/var/log`.
+
+Journald will be supported in future releases.
+
 ## Troubleshooting
 
 Logs are disabled by default.
@@ -35,3 +41,4 @@ Check logs in `akt.log`.
 2. Show keys without id
 3. Show keys in JSON
 4. Validate e-mail ids
+5. Support journald
