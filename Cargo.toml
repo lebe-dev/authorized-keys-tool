@@ -14,12 +14,19 @@ anyhow = "1"
 
 clap = "4.1.8"
 
+chrono = "0.4.24"
+
 regex = "1.7.1"
 
 authorized-keys = { version = "1.0.0", git = "https://gitlab.com/weird-crates/authorized-keys-rs.git"}
+ssh-auth-log = { version = "0.2.1", git = "https://gitlab.com/weird-crates/ssh-auth-log-rs.git"}
+ssh-fingerprint-rs = { version = "0.1.0", git = "https://gitlab.com/weird-crates/ssh-fingerprint-rs.git"}
+
+openssh-keys = "0.6.0"
 
 log = "0.4"
 log4rs = "1"
 
 [dev-dependencies]
-env_logger = "0.10.0"
+env_logger = "0.9.3"
+fake = "2"
