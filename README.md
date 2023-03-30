@@ -2,7 +2,7 @@
 
 ## Show keys
 
-Show keys older than 31 days, without removal:
+Show all keys from authorized_keys:
 
 ```shell
 $ akt show-keys
