@@ -33,3 +33,4 @@ Check logs in `akt.log`.
 
 1. Show unused keys
 2. Show keys without id
+3. Show keys in JSON
