@@ -1,9 +1,12 @@
 use std::path::PathBuf;
 use std::process::exit;
-use authorized_keys::authorizedkeys::{get_authorized_keys_from_file};
+
+use authorized_keys::authorizedkeys::get_authorized_keys_from_file;
 use log::info;
 use ssh_auth_log::provider::AuthLogFileProvider;
-use crate::cli::{AUTH_LOG_PATH_OPTION, DEFAULT_AUTH_LOG_PATH, FILE_OPTION, get_cli_app, get_default_authorized_keys_file_path, init_logging, OLDER_THAN_DAYS_DEFAULT_VALUE, OLDER_THAN_DAYS_OPTION};
+
+use crate::cli::{AUTH_LOG_PATH_OPTION, DEFAULT_AUTH_LOG_PATH, FILE_OPTION, FORMAT_OPTION, get_cli_app, get_default_authorized_keys_file_path, init_logging, OLDER_THAN_DAYS_DEFAULT_VALUE, OLDER_THAN_DAYS_OPTION};
+use crate::cli::output::{OutputFormat, print_results};
 use crate::usecases::oldkeys::get_keys_older_than;
 
 mod cli;
@@ -45,6 +48,11 @@ fn main() {
 
             info!("path to authorized_keys file '{}'", file_path.display());
 
+            let output_format = match cmd_matches.get_one::<OutputFormat>(FORMAT_OPTION) {
+                Some(value) => value.clone(),
+                None => OutputFormat::Default
+            };
+
             if cmd_matches.contains_id(OLDER_THAN_DAYS_OPTION) {
                 let older_than_days = match cmd_matches.get_one::<usize>(OLDER_THAN_DAYS_OPTION) {
                     Some(days_value) => days_value.clone(),
@@ -59,9 +67,9 @@ fn main() {
                 match get_keys_older_than(&auth_log_file_provider,
                                           older_than_days,
                                           &authorized_keys_file_path_str) {
-                    Ok(keys) => {
+                    Ok(mut keys) => {
                         println!("keys for removal:");
-                        keys.iter().for_each(|ak| println!("{}", ak))
+                        print_results(&mut keys, output_format)
                     }
                     Err(e) => {
                         eprintln!("{}", e);
@@ -73,9 +81,7 @@ fn main() {
             }
 
             match get_authorized_keys_from_file(&file_path) {
-                Ok(keys) => {
-                    keys.iter().for_each(|ak| println!("{}", ak))
-                }
+                Ok(mut keys) => print_results(&mut keys, output_format),
                 Err(e) => {
                     eprintln!("{}", e);
                     exit(EXIT_CODE_ERROR)

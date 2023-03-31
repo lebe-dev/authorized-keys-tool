@@ -9,8 +9,8 @@ use ssh_auth_log::{get_login_with_key_attempts, KeyLoginAttempt};
 use ssh_auth_log::provider::AuthLogsProvider;
 use ssh_fingerprint_rs::{get_public_key_fingerprints_from_file, PublicKeyFingerprint};
 
-/// 1. Loads all success attempts with public keys
-/// 2. Returns Бежим по всем успешным попыткам и складываем максимально ранню дату использования ключа
+/// 1. Loads all success login attempts with public keys
+/// 2. Returns key used older than X days (`days_threshold`)
 pub fn get_keys_older_than(auth_logs_provider: &impl AuthLogsProvider,
                            days_threshold: usize,
                            authorized_keys_file_path: &str) -> anyhow::Result<Vec<AuthorizedKey>> {
@@ -121,9 +121,11 @@ fn get_key_candidates_for_removal(authorized_keys: &Vec<AuthorizedKey>,
 #[cfg(test)]
 mod candidate_for_removal_tests {
     use std::collections::HashMap;
+
     use authorized_keys::authorizedkeys::AuthorizedKey;
     use openssh_keys::PublicKey;
     use ssh_auth_log::KeyLoginAttempt;
+
     use crate::tests_common::{get_key_login_attempt, get_random_string, init_logging};
     use crate::tests_common::time::get_datetime_from_now;
     use crate::usecases::oldkeys::get_key_candidates_for_removal;
@@ -137,11 +139,8 @@ mod candidate_for_removal_tests {
         let auth_key3 = get_authorized_key3();
 
         let fingerprint1 = get_fingerprint(&auth_key1);
-        println!("fingerprint 1: {fingerprint1}");
         let fingerprint2 = get_fingerprint(&auth_key2);
-        println!("fingerprint 2: {fingerprint2}");
         let fingerprint3 = get_fingerprint(&auth_key3);
-        println!("fingerprint 3: {fingerprint3}");
 
         let auth_keys = vec![auth_key1.clone(), auth_key2.clone(), auth_key3.clone()];
 

@@ -18,6 +18,9 @@ chrono = "0.4.24"
 
 regex = "1.7.1"
 
+serde = "1.0.159"
+serde_json = "1.0.95"
+
 authorized-keys = { version = "1.0.0", git = "https://gitlab.com/weird-crates/authorized-keys-rs.git"}
 ssh-auth-log = { version = "0.2.1", git = "https://gitlab.com/weird-crates/ssh-auth-log-rs.git"}
 ssh-fingerprint-rs = { version = "0.1.0", git = "https://gitlab.com/weird-crates/ssh-fingerprint-rs.git"}

@@ -1,7 +1,12 @@
 use std::env;
 use std::path::{Path, PathBuf};
+
 use clap::{Arg, ArgMatches, Command, value_parser};
+
+use crate::cli::output::OutputFormat;
 use crate::logging::get_logging_config;
+
+pub mod output;
 
 const USER_HOME_VAR: &'static str = "HOME";
 
@@ -17,6 +22,8 @@ pub const AUTH_LOG_PATH_OPTION: &str = "auth-log-path";
 pub const DEFAULT_AUTH_LOG_PATH: &str = "/var/log";
 
 pub const FILE_OPTION: &str = "file-path";
+
+pub const FORMAT_OPTION: &str = "format";
 
 const VERSION: &str = "0.2.0";
 
@@ -57,6 +64,14 @@ pub fn get_cli_app() -> ArgMatches {
                         .help("set path to authorized_keys file")
                         .value_parser(value_parser!(PathBuf))
                         .long(FILE_OPTION)
+                        .required(false)
+                )
+
+                .arg(
+                    Arg::new(FORMAT_OPTION)
+                        .help("set output format. Possible values: default, json")
+                        .long(FORMAT_OPTION)
+                        .value_parser(value_parser!(OutputFormat))
                         .required(false)
                 )
         )

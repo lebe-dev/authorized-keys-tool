@@ -19,7 +19,7 @@ dependencies = [
 
 [[package]]
 name = "akt"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
  "authorized-keys",
@@ -31,6 +31,8 @@ dependencies = [
  "log4rs",
  "openssh-keys",
  "regex",
+ "serde",
+ "serde_json",
  "ssh-auth-log",
  "ssh-fingerprint-rs",
 ]
@@ -125,10 +127,11 @@ dependencies = [
 [[package]]
 name = "authorized-keys"
 version = "1.0.0"
-source = "git+https://gitlab.com/weird-crates/authorized-keys-rs.git#7ea2eb39ea02a23ad1ed70a355e82186994e36b7"
+source = "git+https://gitlab.com/weird-crates/authorized-keys-rs.git#1e4c8f323f24c8cf58126f5a9d89358ae013193d"
 dependencies = [
  "log",
  "regex",
+ "serde",
  "thiserror",
 ]
 
@@ -391,7 +394,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "scratch",
- "syn 2.0.11",
+ "syn 2.0.12",
 ]
 
 [[package]]
@@ -408,7 +411,7 @@ checksum = "2345488264226bf682893e25de0769f3360aac9957980ec49361b083ddaa5bc5"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.11",
+ "syn 2.0.12",
 ]
 
 [[package]]
@@ -649,9 +652,9 @@ checksum = "0717cef1bc8b636c6e1c1bbdefc09e6322da8a9321966e8928ef80d20f7f770f"
 
 [[package]]
 name = "linux-raw-sys"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd550e73688e6d578f0ac2119e32b797a327631a42f9433e59d02e139c8df60d"
+checksum = "d59d8c75012853d2e872fb56bc8a2e53718e2cafe1a4c823143141c6d90c322f"
 
 [[package]]
 name = "lock_api"
@@ -975,7 +978,7 @@ checksum = "4c614d17805b093df4b147b51339e7e44bf05ef59fba1e45d83500bcfb4d8585"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.11",
+ "syn 2.0.12",
 ]
 
 [[package]]
@@ -1067,9 +1070,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.11"
+version = "2.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "21e3787bb71465627110e7d87ed4faaa36c1f61042ee67badb9e2ef173accc40"
+checksum = "79d9531f94112cfc3e4c8f5f02cb2b58f72c97b7efd85f70203cc6d8efda5927"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1102,7 +1105,7 @@ checksum = "f9456a42c5b0d803c8cd86e73dd7cc9edd429499f37a3550d286d5e86720569f"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.11",
+ "syn 2.0.12",
 ]
 
 [[package]]
