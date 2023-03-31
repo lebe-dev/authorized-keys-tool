@@ -19,6 +19,18 @@ Show keys which used older than X days.
 $ akt show-keys --older-than-days 7
 ```
 
+### Output format
+
+Output formats supported:
+- As is (default)
+- Json
+
+**Usage:**
+
+```
+--format=json
+```
+
 ## Limitations
 
 Tool reads files: `auth.log`, `auth.log.X`, `auth.log.X.gz` from `/var/log`.
