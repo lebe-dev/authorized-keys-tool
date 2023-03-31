@@ -107,6 +107,9 @@ fn get_key_candidates_for_removal(authorized_keys: &Vec<AuthorizedKey>,
                     info!("key with fingerprint '{actual_fingerprint}' wasn't found in auth logs, so it's candidate for removal");
                     candidates_for_removal.push(authorized_key.clone())
                 }
+
+            } else {
+                candidates_for_removal.push(authorized_key.clone());
             }
 
         } else {
@@ -129,6 +132,46 @@ mod candidate_for_removal_tests {
     use crate::tests_common::{get_key_login_attempt, get_random_string, init_logging};
     use crate::tests_common::time::get_datetime_from_now;
     use crate::usecases::oldkeys::get_key_candidates_for_removal;
+
+    #[test]
+    fn return_auth_keys_not_mentioned_in_attempts() {
+        init_logging();
+
+        let auth_key1 = get_authorized_key1();
+        let auth_key2 = get_authorized_key2();
+        let auth_key3 = get_authorized_key3();
+
+        let fingerprint1 = get_fingerprint(&auth_key1);
+        let fingerprint2 = get_fingerprint(&auth_key2);
+
+        let auth_keys = vec![auth_key1.clone(), auth_key2.clone(), auth_key3.clone()];
+
+        let mut attempts_map: HashMap<String, KeyLoginAttempt> = HashMap::new();
+
+        let ten_days_before = get_datetime_from_now(10);
+        let attempt5 = get_key_login_attempt(&ten_days_before, &fingerprint1);
+        attempts_map.insert(fingerprint1.clone(), attempt5);
+
+        let five_days_before = get_datetime_from_now(5);
+        let attempt1 = get_key_login_attempt(&five_days_before, &fingerprint1);
+        attempts_map.insert(fingerprint1.clone(), attempt1);
+
+        let two_days_before = get_datetime_from_now(2);
+        let attempt2 = get_key_login_attempt(&two_days_before, &fingerprint1);
+        attempts_map.insert(fingerprint1.clone(), attempt2);
+
+        let one_days_before = get_datetime_from_now(1);
+        let attempt3 = get_key_login_attempt(&one_days_before, &fingerprint1);
+        attempts_map.insert(fingerprint1.clone(), attempt3);
+
+        let eight_days_before = get_datetime_from_now(8);
+        let attempt6 = get_key_login_attempt(&eight_days_before, &fingerprint2);
+        attempts_map.insert(fingerprint2.clone(), attempt6);
+
+        let results = get_key_candidates_for_removal(&auth_keys, &attempts_map, 2);
+
+        assert!(results.contains(&auth_key3));
+    }
 
     #[test]
     fn return_keys_beyond_specified_threshold() {
