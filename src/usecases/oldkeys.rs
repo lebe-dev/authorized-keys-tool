@@ -134,6 +134,28 @@ mod candidate_for_removal_tests {
     use crate::usecases::oldkeys::get_key_candidates_for_removal;
 
     #[test]
+    fn exclude_today_attempts() {
+        init_logging();
+
+        let auth_key1 = get_authorized_key1();
+        let auth_key2 = get_authorized_key2();
+        let auth_key3 = get_authorized_key3();
+
+        let fingerprint2 = get_fingerprint(&auth_key2);
+
+        let auth_keys = vec![auth_key1.clone(), auth_key2.clone(), auth_key3.clone()];
+
+        let mut attempts_map: HashMap<String, KeyLoginAttempt> = HashMap::new();
+
+        add_attempt(&mut attempts_map, 0, &fingerprint2);
+
+        let results = get_key_candidates_for_removal(
+            &auth_keys, &attempts_map, 0);
+
+        assert!(!results.contains(&auth_key2));
+    }
+
+    #[test]
     fn return_auth_keys_not_mentioned_in_attempts() {
         init_logging();
 
