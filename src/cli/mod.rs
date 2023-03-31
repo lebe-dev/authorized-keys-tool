@@ -25,7 +25,7 @@ pub const FILE_OPTION: &str = "file-path";
 
 pub const FORMAT_OPTION: &str = "format";
 
-const VERSION: &str = "0.2.0";
+const VERSION: &str = "0.2.1";
 
 pub fn get_cli_app() -> ArgMatches {
     Command::new("akt")
