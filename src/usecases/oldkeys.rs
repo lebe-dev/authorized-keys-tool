@@ -141,21 +141,18 @@ mod candidate_for_removal_tests {
         let auth_key2 = get_authorized_key2();
         let auth_key3 = get_authorized_key3();
 
-        let fingerprint1 = get_fingerprint(&auth_key1);
         let fingerprint2 = get_fingerprint(&auth_key2);
 
         let auth_keys = vec![auth_key1.clone(), auth_key2.clone(), auth_key3.clone()];
 
         let mut attempts_map: HashMap<String, KeyLoginAttempt> = HashMap::new();
 
-        add_attempt(&mut attempts_map, 10, &fingerprint1);
-        add_attempt(&mut attempts_map, 5, &fingerprint1);
-        add_attempt(&mut attempts_map, 2, &fingerprint1);
-        add_attempt(&mut attempts_map, 1, &fingerprint1);
         add_attempt(&mut attempts_map, 8, &fingerprint2);
 
-        let results = get_key_candidates_for_removal(&auth_keys, &attempts_map, 2);
+        let results = get_key_candidates_for_removal(
+            &auth_keys, &attempts_map, 2);
 
+        assert!(results.contains(&auth_key1));
         assert!(results.contains(&auth_key3));
     }
 
