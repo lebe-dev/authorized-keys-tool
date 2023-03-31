@@ -2,7 +2,7 @@
 
 ## Show keys
 
-Show all keys from authorized_keys:
+Show all keys from `authorized_keys`:
 
 ```shell
 $ akt show-keys
@@ -49,7 +49,6 @@ Check logs in `akt.log`.
 
 ## Roadmap
 
-1. Show unused keys
-2. Show keys without id
-3. Validate e-mail ids
-4. Support journald
+1. Show keys without id
+2. Validate e-mail ids
+3. Support journald
