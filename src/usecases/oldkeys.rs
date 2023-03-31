@@ -181,7 +181,7 @@ mod candidate_for_removal_tests {
 
     fn get_authorized_key1() -> AuthorizedKey {
         AuthorizedKey {
-            key_type: "ssh-rsa".to_string(),
+            key_type: "rsa".to_string(),
             key: "AAAAB3NzaC1yc2EAAAADAQABAAABgQDAd6jIpyOMz50jtD+7FrKhQ3yzYjZTr0zCixTHDTZ2w2nEcrnkGqF/2L1HAiYVv1kub/GlL8po1gv7CwOE4O2F5VwtSNco84YEcl8zL7tTKJCdmOVqajvFtRmYP6vQQ8q1ffODlky7u98HkQN/Pgu+zCd1D104Tx3bpPJoFOGfn3nZm5b3zTgM2Ie2qJwyRHdvJwmtJtmf6IAG9XF1GdzPJ15U6g/7SndvfGX++KodYZzSUWsbLDxC0Vpr4nH1+C8JIWApUFXTTKCSyoSm3hmDSXrreOkmMSltVHj8SQYFNmMeMRMvKZwmqi6RMC5AXock4gFxzaxCsDtqrfc4MYb9UE/uUiSeyQ2GSjW6soq+9K/+s8nmCnzxGTuM7gwGG1Ada7qgIrLAHKdQyiDX9/wwwi7Nax8OO3+orWJjfQymoHL3/aYEhXE0c2pscAeYaB6iiw+UkvTUSJ0nun9bjR8jY3iS0DUM4jYSkKaVGl2/kOv/fZdf4I+cCuHs/0stREc=".to_string(),
             id: get_random_string(),
             row_index: 0,
@@ -190,7 +190,7 @@ mod candidate_for_removal_tests {
 
     fn get_authorized_key2() -> AuthorizedKey {
         AuthorizedKey {
-            key_type: "ssh-ed25519".to_string(),
+            key_type: "ed25519".to_string(),
             key: "AAAAC3NzaC1lZDI1NTE5AAAAIDOGSbgN43gI+oP5CebK7JsGWsMT69uymML4YHWUPI2G".to_string(),
             id: get_random_string(),
             row_index: 0,
@@ -199,7 +199,7 @@ mod candidate_for_removal_tests {
 
     fn get_authorized_key3() -> AuthorizedKey {
         AuthorizedKey {
-            key_type: "ssh-rsa".to_string(),
+            key_type: "rsa".to_string(),
             key: "AAAAB3NzaC1yc2EAAAABIwAAAQEA57gP/iLw2reMq2Yqzd/GShYfK1+6YPktMkJesy5DKQGYiv8ncgR5UslTKbTcUUAtVn5Dq73T/HHXrH7n1iK8yrLCbBc8Es856OvBkSDDLA8iemZwWknTPe0zbUxV6waWub2Ynx+6L8ZeYiOUhw9w0H5pXJhUwmKNu+SDYMTAn4dBkn8sjNUFMlgZRla3lML0/HUyJSX3KskXuUJ6lT98pQ6zGhsaHRkMai7bu+Q9/4/8nFiVZ2rzYAR97fMTvmlM2sWYtvV71d9u1urg2Gbuh4k0xW6OvdScoaIM0GGU81mKWE4F3D7KKmvAGPKYyfwaqtzXAKIsu9ZSpXYE5fPIVQ==".to_string(),
             id: get_random_string(),
             row_index: 0,
