@@ -37,7 +37,7 @@ const FILE_OPTION: &str = "file-path";
 
 const EXIT_CODE_ERROR: i32 = 1;
 
-const VERSION: &str = "0.1.0";
+const VERSION: &str = "0.2.0";
 
 fn main() {
     let matches = Command::new("akt")
