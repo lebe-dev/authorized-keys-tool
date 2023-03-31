@@ -51,6 +51,5 @@ Check logs in `akt.log`.
 
 1. Show unused keys
 2. Show keys without id
-3. Show keys in JSON
-4. Validate e-mail ids
-5. Support journald
+3. Validate e-mail ids
+4. Support journald
