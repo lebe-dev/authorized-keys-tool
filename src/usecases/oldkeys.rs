@@ -148,25 +148,11 @@ mod candidate_for_removal_tests {
 
         let mut attempts_map: HashMap<String, KeyLoginAttempt> = HashMap::new();
 
-        let ten_days_before = get_datetime_from_now(10);
-        let attempt5 = get_key_login_attempt(&ten_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt5);
-
-        let five_days_before = get_datetime_from_now(5);
-        let attempt1 = get_key_login_attempt(&five_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt1);
-
-        let two_days_before = get_datetime_from_now(2);
-        let attempt2 = get_key_login_attempt(&two_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt2);
-
-        let one_days_before = get_datetime_from_now(1);
-        let attempt3 = get_key_login_attempt(&one_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt3);
-
-        let eight_days_before = get_datetime_from_now(8);
-        let attempt6 = get_key_login_attempt(&eight_days_before, &fingerprint2);
-        attempts_map.insert(fingerprint2.clone(), attempt6);
+        add_attempt(&mut attempts_map, 10, &fingerprint1);
+        add_attempt(&mut attempts_map, 5, &fingerprint1);
+        add_attempt(&mut attempts_map, 2, &fingerprint1);
+        add_attempt(&mut attempts_map, 1, &fingerprint1);
+        add_attempt(&mut attempts_map, 8, &fingerprint2);
 
         let results = get_key_candidates_for_removal(&auth_keys, &attempts_map, 2);
 
@@ -189,29 +175,12 @@ mod candidate_for_removal_tests {
 
         let mut attempts_map: HashMap<String, KeyLoginAttempt> = HashMap::new();
 
-        let ten_days_before = get_datetime_from_now(10);
-        let attempt5 = get_key_login_attempt(&ten_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt5);
-
-        let five_days_before = get_datetime_from_now(5);
-        let attempt1 = get_key_login_attempt(&five_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt1);
-
-        let two_days_before = get_datetime_from_now(2);
-        let attempt2 = get_key_login_attempt(&two_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt2);
-
-        let one_days_before = get_datetime_from_now(1);
-        let attempt3 = get_key_login_attempt(&one_days_before, &fingerprint1);
-        attempts_map.insert(fingerprint1.clone(), attempt3);
-
-        let eight_days_before = get_datetime_from_now(8);
-        let attempt6 = get_key_login_attempt(&eight_days_before, &fingerprint2);
-        attempts_map.insert(fingerprint2.clone(), attempt6);
-
-        let eleven_days_before = get_datetime_from_now(11);
-        let attempt7 = get_key_login_attempt(&eleven_days_before, &fingerprint3);
-        attempts_map.insert(fingerprint3.clone(), attempt7);
+        add_attempt(&mut attempts_map, 10, &fingerprint1);
+        add_attempt(&mut attempts_map, 5, &fingerprint1);
+        add_attempt(&mut attempts_map, 2, &fingerprint1);
+        add_attempt(&mut attempts_map, 1, &fingerprint1);
+        add_attempt(&mut attempts_map, 8, &fingerprint2);
+        add_attempt(&mut attempts_map, 11, &fingerprint3);
 
         let results = get_key_candidates_for_removal(&auth_keys, &attempts_map, 2);
 
@@ -220,6 +189,12 @@ mod candidate_for_removal_tests {
         assert!(!results.contains(&auth_key1));
         assert!(results.contains(&auth_key2));
         assert!(results.contains(&auth_key3));
+    }
+
+    fn add_attempt(attempts_map: &mut HashMap<String, KeyLoginAttempt>, days_from_now: u64, fingerprint: &str) {
+        let days_before = get_datetime_from_now(days_from_now);
+        let attempt = get_key_login_attempt(&days_before, &fingerprint);
+        attempts_map.insert(fingerprint.to_string(), attempt);
     }
 
     fn get_authorized_key1() -> AuthorizedKey {
