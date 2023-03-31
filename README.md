@@ -42,7 +42,7 @@ Journald will be supported in future releases.
 Logs are disabled by default.
 
 ```shell
-$ ack --log-level=debug [COMMAND] [OPTIONS]
+$ akt --log-level=debug [COMMAND] [OPTIONS]
 ```
 
 Check logs in `akt.log`.
